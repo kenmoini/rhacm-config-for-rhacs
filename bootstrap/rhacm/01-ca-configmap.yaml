@@ -1,3 +1,4 @@
+# https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/applications/managing-applications#using-custom-CA-certificates-for-secure-HTTPS-connection
 ---
 kind: ConfigMap
 apiVersion: v1

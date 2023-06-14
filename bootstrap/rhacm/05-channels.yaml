@@ -9,4 +9,5 @@ metadata:
 spec:
   type: Git
   pathname: 'https://github.com/kenmoini/rhacm-config-for-rhacs'
+  # https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/applications/managing-applications#insecure-http-server
   insecureSkipVerify: true
