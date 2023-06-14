@@ -7,11 +7,11 @@ metadata:
     apps.open-cluster-management.io/git-path: rhacm-config
     apps.open-cluster-management.io/reconcile-option: merge
   labels:
-    app: rhacs-config
+    app: rhacm-rhacs-config
   name: rhacs-config
   namespace: rhacm-rhacs-config
 spec:
-  channel: rhacm-channels/github-rhacm-for-rhacs
+  channel: rhacm-rhacs-config/github-rhacm-for-rhacs
   placement:
     placementRef:
       kind: PlacementRule

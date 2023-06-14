@@ -4,7 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
   labels:
-    app: rhacs-config
+    app: rhacm-rhacs-config
   name: rhacs-config
   namespace: rhacm-rhacs-config
 spec:
@@ -16,4 +16,4 @@ spec:
       - key: app
         operator: In
         values:
-          - rhacs-config
+          - rhacm-rhacs-config

@@ -6,6 +6,8 @@ metadata:
     apps.open-cluster-management.io/reconcile-rate: medium
   name: github-rhacm-for-rhacs
   namespace: rhacm-rhacs-config
+  labels:
+    app: rhacm-rhacs-config
 spec:
   type: Git
   pathname: 'https://github.com/kenmoini/rhacm-config-for-rhacs'

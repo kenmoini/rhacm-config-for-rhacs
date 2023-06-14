@@ -5,7 +5,7 @@ metadata:
   name: rhacs-config-local-cluster
   namespace: rhacm-rhacs-config
   labels:
-    app: rhacs-config
+    app: rhacm-rhacs-config
 spec:
   clusterSelector:
     matchLabels:
