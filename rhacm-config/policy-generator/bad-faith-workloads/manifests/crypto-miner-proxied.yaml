@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crypto-miner-proxied
+  namespace: bad-things
+  labels:
+    app: crypto-miner-proxied
+spec:
+  selector:
+    matchLabels:
+      app: crypto-miner-proxied
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: crypto-miner-proxied
+    spec:
+      containers:
+      - name: crypto-miner
+        image: servethehome/monero_cpu_minergate:latest
+        env:
+        ## Sign up at https://minergate.com/a/c654a64eceed5d520baf202d
+        - name: username
+          value: ken@kenmoini.com
+        - name: TZ
+          value: America/New_York
+        - name: HTTP_PROXY
+          value: 'http://192.168.42.31:3128/'
+        - name: http_proxy
+          value: 'http://192.168.42.31:3128/'
+        - name: HTTPS_PROXY
+          value: 'http://192.168.42.31:3128/'
+        - name: https_proxy
+          value: 'http://192.168.42.31:3128/'
+        - name: NO_PROXY
+          value: >-
+            .cluster.local,.kemo.labs,.kemo.network,.svc,.svc.cluster.local,10.128.0.0/14,127.0.0.1,172.30.0.0/16,192.168.0.0/16,192.168.70.0/23,api-int.core-ocp.d70.lab.kemo.network,localhost
+        - name: no_proxy
+          value: >-
+            .cluster.local,.kemo.labs,.kemo.network,.svc,.svc.cluster.local,10.128.0.0/14,127.0.0.1,172.30.0.0/16,192.168.0.0/16,192.168.70.0/23,api-int.core-ocp.d70.lab.kemo.network,localhost
+        workingDir: /tmp

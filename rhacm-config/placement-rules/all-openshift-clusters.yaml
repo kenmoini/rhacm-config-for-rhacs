@@ -11,4 +11,6 @@ spec:
         operator: In
         values:
           - OpenShift
-  clusterConditions: []
+  clusterConditions:
+    - status: "True"
+      type: ManagedClusterConditionAvailable

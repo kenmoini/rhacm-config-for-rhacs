@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crypto-miner-public
+  namespace: bad-things
+  labels:
+    app: crypto-miner-public
+spec:
+  selector:
+    matchLabels:
+      app: crypto-miner-public
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: crypto-miner-public
+    spec:
+      containers:
+      - name: crypto-miner
+        image: servethehome/monero_cpu_minergate:latest
+        env:
+        ## Sign up at https://minergate.com/a/c654a64eceed5d520baf202d
+        - name: username
+          value: ken@kenmoini.com
+        - name: TZ
+          value: America/New_York
+        workingDir: /tmp

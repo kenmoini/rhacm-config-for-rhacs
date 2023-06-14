@@ -1,0 +1,24 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: bad-faith-workloads-pg
+  #annotations:
+  #  argocd.argoproj.io/compare-options: IgnoreExtraneous
+placementBindingDefaults:
+  name: bad-faith-workloads-pg-pb
+policyDefaults:
+  namespace: rhacm-rhacs-config
+  #namespace: stackrox
+  # Use the name of an existing placement rule
+  placement:
+    placementRuleName: rhacs-secured-cluster
+  remediationAction: enforce
+  severity: high
+  consolidateManifests: false # Put each object in its own ConfigurationPolicy in the Policy
+  pruneObjectBehavior: "DeleteIfCreated"
+  #policySets: 
+  #  - rhacs-operator
+policies:
+  - name: bad-faith-workloads
+    manifests:
+      - path: manifests

@@ -1,0 +1,8 @@
+# kustomize build --enable-alpha-plugins rhacm-config/policy-generator/rhacs-secured-cluster | oc apply -f -
+# Before running this, create a Cluster Init bundle and apply it to the hub cluster in the stackrox namespace
+generators:
+  - policygenerator.yaml
+commonLabels:
+  manifest-group: bad-faith-workloads
+commonAnnotations:
+  argocd.argoproj.io/compare-options: IgnoreExtraneous
