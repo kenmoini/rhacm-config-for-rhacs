@@ -1,0 +1,11 @@
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  annotations:
+    apps.open-cluster-management.io/reconcile-rate: medium
+  name: github-rhacm-for-rhacs
+  namespace: rhacm-channels
+spec:
+  type: Git
+  pathname: 'https://github.com/kenmoini/rhacm-config-for-rhacs'

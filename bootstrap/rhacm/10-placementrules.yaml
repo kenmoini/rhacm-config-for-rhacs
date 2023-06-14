@@ -1,0 +1,24 @@
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: rhacm-policies
+  name: rhacs-central-cluster
+  namespace: rhacm-policies
+spec:
+  clusterSelector:
+    matchLabels:
+      'rhacs-central-cluster': 'true'
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: rhacm-policies
+  name: rhacs-secured-cluster
+  namespace: rhacm-policies
+spec:
+  clusterSelector:
+    matchLabels:
+      'rhacs-secured-cluster': 'true'
