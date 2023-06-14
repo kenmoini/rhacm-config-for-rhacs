@@ -17,7 +17,7 @@ metadata:
   labels:
     app: rhacs-config
   name: rhacs-secured-cluster
-  namespace: rhacm-rhacs-config
+  namespace: stackrox
 spec:
   clusterSelector:
     matchLabels:

@@ -1,16 +1,17 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: PolicyGenerator
 metadata:
-  name: rhacs-central-pg
+  name: rhacs-secured-cluster-pg
   #annotations:
   #  argocd.argoproj.io/compare-options: IgnoreExtraneous
 placementBindingDefaults:
-  name: rhacs-central-pg-pb
+  name: rhacs-secured-cluster-pg-pb
 policyDefaults:
-  namespace: rhacm-rhacs-config
+  #namespace: rhacm-rhacs-config
+  namespace: stackrox
   # Use the name of an existing placement rule
   placement:
-    placementRuleName: rhacs-central-cluster
+    placementRuleName: rhacs-secured-cluster
   remediationAction: enforce
   severity: high
   consolidateManifests: false # Put each object in its own ConfigurationPolicy in the Policy
@@ -18,6 +19,6 @@ policyDefaults:
   #policySets: 
   #  - rhacs-operator
 policies:
-  - name: rhacs-central
+  - name: rhacs-secured-cluster
     manifests:
       - path: manifests
