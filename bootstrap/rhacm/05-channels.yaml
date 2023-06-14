@@ -9,3 +9,4 @@ metadata:
 spec:
   type: Git
   pathname: 'https://github.com/kenmoini/rhacm-config-for-rhacs'
+  insecureSkipVerify: true

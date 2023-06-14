@@ -1,0 +1,29 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: trusted-ca
+  namespace: rhacm-channels
+data:
+  caCerts: |
+    # Git server root CA here
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: trusted-ca
+  namespace: rhacm-apps
+data:
+  caCerts: |
+    # Git server root CA here
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: trusted-ca
+  namespace: rhacm-policies
+  #labels:
+  #  config.openshift.io/inject-trusted-cabundle: 'true'
+data:
+  caCerts: |
+    # Git server root CA here

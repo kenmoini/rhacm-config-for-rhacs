@@ -3,7 +3,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - 00-namespaces.yaml
-- 01-channels.yaml
+#- 01-ca-configmap.yaml
+- 05-channels.yaml
 - 10-placementrules.yaml
 - 15-subscription.yaml
 - 20-application.yaml

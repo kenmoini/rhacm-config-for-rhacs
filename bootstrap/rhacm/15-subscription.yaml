@@ -9,7 +9,7 @@ metadata:
   labels:
     app: rhacs-config
   name: rhacs-config
-  namespace: rhacm-policies
+  namespace: rhacm-apps
 spec:
   channel: rhacm-channels/github-rhacm-for-rhacs
   placement:
