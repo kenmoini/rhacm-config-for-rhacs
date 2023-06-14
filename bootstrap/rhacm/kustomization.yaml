@@ -5,4 +5,5 @@ resources:
 - 00-namespaces.yaml
 - 01-channels.yaml
 - 10-placementrules.yaml
-- 15-appsub.yaml
+- 15-subscription.yaml
+- 20-application.yaml
