@@ -2,23 +2,23 @@
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: rhacs-config-local-cluster
-  namespace: rhacm-apps
   labels:
     app: rhacs-config
+  name: rhacs-central-cluster
+  namespace: rhacm-apps
 spec:
   clusterSelector:
     matchLabels:
-      local-cluster: 'true'
+      'rhacs-central-cluster': 'true'
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
-  name: rhacs-config-local-cluster
-  namespace: rhacm-policies
   labels:
     app: rhacs-config
+  name: rhacs-central-cluster
+  namespace: rhacm-policies
 spec:
   clusterSelector:
     matchLabels:
-      local-cluster: 'true'
+      'rhacs-central-cluster': 'true'
