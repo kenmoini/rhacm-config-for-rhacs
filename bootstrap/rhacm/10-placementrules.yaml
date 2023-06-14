@@ -22,3 +22,31 @@ spec:
   clusterSelector:
     matchLabels:
       'rhacs-secured-cluster': 'true'
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: all-openshift-clusters
+  namespace: rhacm-policies
+spec:
+  clusterSelector:
+    matchExpressions:
+      - key: vendor
+        operator: In
+        values:
+          - OpenShift
+  clusterConditions: []
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: all-openshift-clusters
+  namespace: rhacm-apps
+spec:
+  clusterSelector:
+    matchExpressions:
+      - key: vendor
+        operator: In
+        values:
+          - OpenShift
+  clusterConditions: []

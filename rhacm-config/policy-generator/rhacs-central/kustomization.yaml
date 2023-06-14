@@ -1,0 +1,6 @@
+generators:
+  - policygenerator.yaml
+commonLabels:
+  manifest-group: rhacs-central
+commonAnnotations:
+  argocd.argoproj.io/compare-options: IgnoreExtraneous
