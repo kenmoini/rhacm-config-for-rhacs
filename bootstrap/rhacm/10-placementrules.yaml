@@ -3,7 +3,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   labels:
-    app: rhacm-policies
+    app: rhacs-config
   name: rhacs-central-cluster
   namespace: rhacm-policies
 spec:
@@ -15,7 +15,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   labels:
-    app: rhacm-policies
+    app: rhacs-config
   name: rhacs-secured-cluster
   namespace: rhacm-policies
 spec:
