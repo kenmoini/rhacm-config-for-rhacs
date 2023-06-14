@@ -9,10 +9,10 @@ metadata:
   labels:
     app: rhacs-config
   name: rhacs-config
-  namespace: rhacm-apps
+  namespace: rhacm-rhacs-config
 spec:
   channel: rhacm-channels/github-rhacm-for-rhacs
   placement:
     placementRef:
       kind: PlacementRule
-      name: rhacs-central-cluster
+      name: rhacs-config-local-cluster

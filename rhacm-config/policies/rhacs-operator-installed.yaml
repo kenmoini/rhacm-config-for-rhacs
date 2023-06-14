@@ -2,7 +2,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: rhacs-operator-installed
-  namespace: rhacm-policies
+  namespace: rhacm-rhacs-config
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
     policy.open-cluster-management.io/categories: CA Security Assessment and Authorization

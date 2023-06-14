@@ -3,7 +3,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
   name: rhacs-operator-installed-pb
-  namespace: rhacm-policies
+  namespace: rhacm-rhacs-config
 placementRef:
   name: all-openshift-clusters
   apiGroup: apps.open-cluster-management.io

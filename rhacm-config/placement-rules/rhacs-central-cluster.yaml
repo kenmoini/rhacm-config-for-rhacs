@@ -5,7 +5,7 @@ metadata:
   labels:
     app: rhacs-config
   name: rhacs-central-cluster
-  namespace: rhacm-apps
+  namespace: rhacm-rhacs-config
 spec:
   clusterSelector:
     matchLabels:
@@ -17,7 +17,7 @@ metadata:
   labels:
     app: rhacs-config
   name: rhacs-central-cluster
-  namespace: rhacm-policies
+  namespace: rhacm-rhacs-config
 spec:
   clusterSelector:
     matchLabels:

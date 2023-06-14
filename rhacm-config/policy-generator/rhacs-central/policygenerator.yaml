@@ -7,7 +7,7 @@ metadata:
 placementBindingDefaults:
   name: rhacs-central-pg-pb
 policyDefaults:
-  namespace: rhacm-policies
+  namespace: rhacm-rhacs-config
   # Use the name of an existing placement rule
   placement:
     placementRuleName: rhacs-central-cluster
