@@ -10,15 +10,3 @@ spec:
   clusterSelector:
     matchLabels:
       local-cluster: 'true'
----
-apiVersion: apps.open-cluster-management.io/v1
-kind: PlacementRule
-metadata:
-  name: rhacs-config-local-cluster
-  namespace: rhacm-rhacs-config
-  labels:
-    app: rhacs-config
-spec:
-  clusterSelector:
-    matchLabels:
-      local-cluster: 'true'
