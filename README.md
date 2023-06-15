@@ -19,3 +19,13 @@ kustomize build --enable-alpha-plugins rhacm-config/policy-generator/rhacs-centr
 
 kustomize build --enable-alpha-plugins rhacm-config/policy-generator/rhacs-secured-cluster | oc apply -f -
 ```
+
+## Bad Faith Workloads
+
+In order for OCP and RHACS to really shine, you need some bad actors.
+
+```bash
+kustomize build --enable-alpha-plugins rhacm-config/policy-generator/bad-faith-workloads | oc apply -f -
+```
+
+Or apply the AppSubs in the `extras` folder.

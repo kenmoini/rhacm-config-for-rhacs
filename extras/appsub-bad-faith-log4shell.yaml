@@ -1,0 +1,63 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: log4shell
+  namespace: rhacm-apps
+spec:
+  componentKinds:
+  - group: apps.open-cluster-management.io
+    kind: Subscription
+  descriptor: {}
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values: 
+          - log4shell
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ggithubcom-marrober-acs-automation-ns
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  annotations:
+    apps.open-cluster-management.io/reconcile-rate: medium
+  name: ggithubcom-marrober-acs-automation
+  namespace: ggithubcom-marrober-acs-automation-ns
+spec:
+  type: Git
+  pathname: 'https://github.com/marrober/acs-automation'
+  insecureSkipVerify: true
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  annotations:
+    apps.open-cluster-management.io/git-branch: main
+    apps.open-cluster-management.io/git-path: bad-deployments/CVE-2021-44228
+    apps.open-cluster-management.io/reconcile-option: merge
+  labels:
+    app: log4shell
+  name: log4shell-subscription-1
+  namespace: rhacm-apps
+spec:
+  channel: ggithubcom-marrober-acs-automation-ns/ggithubcom-marrober-acs-automation
+  placement:
+    placementRef:
+      kind: PlacementRule
+      name: log4shell-placement-1
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: log4shell
+  name: log4shell-placement-1
+  namespace: rhacm-apps
+spec:
+  clusterConditions:
+    - type: ManagedClusterConditionAvailable
+      status: "True"
