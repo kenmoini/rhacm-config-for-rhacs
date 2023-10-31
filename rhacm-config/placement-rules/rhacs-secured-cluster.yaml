@@ -10,15 +10,15 @@ spec:
   clusterSelector:
     matchLabels:
       'rhacs-secured-cluster': 'true'
-#---
-#apiVersion: apps.open-cluster-management.io/v1
-#kind: PlacementRule
-#metadata:
-#  labels:
-#    app: rhacs-config
-#  name: rhacs-secured-cluster
-#  namespace: stackrox
-#spec:
-#  clusterSelector:
-#    matchLabels:
-#      'rhacs-secured-cluster': 'true'
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: rhacs-config
+  name: rhacs-secured-cluster
+  namespace: stackrox
+spec:
+  clusterSelector:
+    matchLabels:
+      'rhacs-secured-cluster': 'true'

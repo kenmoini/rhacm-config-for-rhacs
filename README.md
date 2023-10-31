@@ -4,28 +4,42 @@ This repository provides a good starting point for a Red Hat Advanced Cluster Se
 
 ## Deployment
 
-On the Hub Cluster with RHACM installed, run the following command:
+1. On the Hub Cluster, run the following command:
 
 ```bash
-oc apply -k bootstrap/rhacm/
+# Install the RHACM Operator
+oc apply -k bootstrap/rhacm-operator-install/overlays/release-2.8/
 
-oc apply -f rhacm-config/placement-rules/
-oc apply -f rhacm-config/placement-bindings/
-oc apply -f rhacm-config/policies/
+# Deploy RHACM MultiClusterHub
+oc apply -k bootstrap/rhacm-instance/base/
 
-kustomize build --enable-alpha-plugins rhacm-config/policy-generator/rhacs-central | oc apply -f -
-
-# Create a cluster-init bundle and apply it to the Hub cluster in the stackrox namespace
-
-kustomize build --enable-alpha-plugins rhacm-config/policy-generator/rhacs-secured-cluster | oc apply -f -
+# Configure RHACM for RHACS, Compliance Operator, and more
+oc apply -k bootstrap/rhacm-config/base/
 ```
+
+2. Next, label the `local-cluster` in RHACM with `rhacs-central-cluster=true` - this will deploy RHACS Central.
+3. Log into RHACS, create a cluster-init bundle and apply it to the Hub cluster in the `stackrox` namespace
+4. Label any clusters with `rhacs-secured-cluster=true` to deploy as a Secured Cluster and have it automatically be bound to RHACS.
 
 ## Bad Faith Workloads
 
-In order for OCP and RHACS to really shine, you need some bad actors.
+In order for OCP and RHACS to really shine, you need some bad actors.  You'll find a few ACM Policies applied that will deploy Webgoat and a Cryptominer.
 
-```bash
-kustomize build --enable-alpha-plugins rhacm-config/policy-generator/bad-faith-workloads | oc apply -f -
+## Compliance Operator
+
+There is also a RHACM Policy that will deploy the Compliance Operator to any OpenShift cluster and run a CIS and E8 scan on all the nodes.
+
+> Your Control Plane nodes need to be able to bind PVCs to Pods.
+
+With ODF you will likely need ODF configured to run the CSI Plugin on the control plane nodes as well:
+
+- https://access.redhat.com/solutions/6047841
+- https://access.redhat.com/documentation/en-us/red_hat_openshift_container_storage/4.6/html-single/managing_and_allocating_storage_resources/index#managing-container-storage-interface-component-placements_rhocs
+
+Add the following to the ConfigMap in `openshift-storage/rook-ceph-operator-config`:
+
+```yaml=
+  CSI_PLUGIN_TOLERATIONS: |
+    - key: node-role.kubernetes.io/master
+      effect: NoSchedule
 ```
-
-Or apply the AppSubs in the `extras` folder.

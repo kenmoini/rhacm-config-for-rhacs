@@ -4,6 +4,5 @@ kind: Kustomization
 
 resources:
   - namespace.yml
-  - rbac.yml
-  - multiclusterhub.yml
-  #- multiclusterengine.yml
+  - operatorgroup.yml
+  - subscription.yml
