@@ -43,3 +43,7 @@ Add the following to the ConfigMap in `openshift-storage/rook-ceph-operator-conf
     - key: node-role.kubernetes.io/master
       effect: NoSchedule
 ```
+
+## Issue: RHACM AppSub Not Syncing
+
+You probably need to add your user to the `open-cluster-management:subscription-admin` ClusterRoleBinding: https://github.com/open-cluster-management-io/policy-collection#subscription-administrator
