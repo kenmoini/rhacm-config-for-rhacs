@@ -6,4 +6,5 @@ resources:
   - namespace.yml
   - rbac.yml
   - multiclusterhub.yml
+  #- cluster-ca-trust.yml
   #- multiclusterengine.yml

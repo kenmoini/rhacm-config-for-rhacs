@@ -14,5 +14,5 @@ spec:
   channel: rhacm-rhacs-config/github-rhacm-for-rhacs
   placement:
     placementRef:
-      kind: PlacementRule
+      kind: Placement
       name: rhacs-config-local-cluster
