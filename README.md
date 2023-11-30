@@ -8,10 +8,12 @@ This repository provides a good starting point for a Red Hat Advanced Cluster Se
 
 ```bash
 # Install the RHACM Operator
-oc apply -k bootstrap/rhacm-operator-install/overlays/release-2.8/
+oc apply -k bootstrap/rhacm-operator-install/overlays/release-2.9/
 
 # Deploy RHACM MultiClusterHub
 oc apply -k bootstrap/rhacm-instance/base/
+# or, if deploying to infra nodes
+oc apply -k bootstrap/rhacm-instance/overlays/infra-nodes/
 
 # Configure RHACM for RHACS, Compliance Operator, and more
 oc apply -k bootstrap/rhacm-config/base/
@@ -47,3 +49,24 @@ Add the following to the ConfigMap in `openshift-storage/rook-ceph-operator-conf
 ## Issue: RHACM AppSub Not Syncing
 
 You probably need to add your user to the `open-cluster-management:subscription-admin` ClusterRoleBinding: https://github.com/open-cluster-management-io/policy-collection#subscription-administrator
+
+## Issue: RHACM Application Controller not working through a proxy
+
+This whole thing is a pain in the ass if you're behind a proxy.  Just deploy things manually instead of using the AppSub:
+
+```bash=
+oc apply -f bootstrap/base/00-namespaces.yml
+oc apply -f bootstrap/base/00-hub-cluster-set.yml
+oc apply -f bootstrap/base/10-managedclustersetbindings.yml
+oc apply -f bootstrap/base/10-placement.yml
+oc apply -f bootstrap/base/10-placementrules.yml
+
+oc apply -k rhacm-config/placement-rules/
+oc apply -k rhacm-config/placement-bindings/
+oc apply -k rhacm-config/policies/
+
+# Download the PolicyGenerator Kustomize plugin if needed: https://github.com/open-cluster-management-io/policy-generator-plugin
+
+cd rhacm-config/policy-generator
+kustomize build --enable-alpha-plugins | oc apply -f -
+```
