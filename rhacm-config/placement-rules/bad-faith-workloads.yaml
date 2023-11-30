@@ -1,0 +1,12 @@
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: rhacs-config
+  name: bad-faith-workloads
+  namespace: rhacm-rhacs-config
+spec:
+  clusterSelector:
+    matchLabels:
+      'bad-faith-workloads': 'true'

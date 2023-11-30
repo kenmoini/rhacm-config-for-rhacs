@@ -11,7 +11,7 @@ policyDefaults:
   #namespace: stackrox
   # Use the name of an existing placement rule
   placement:
-    placementRuleName: rhacs-secured-cluster
+    placementRuleName: bad-faith-workloads
   remediationAction: enforce
   severity: high
   consolidateManifests: false # Put each object in its own ConfigurationPolicy in the Policy

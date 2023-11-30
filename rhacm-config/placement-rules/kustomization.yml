@@ -6,3 +6,4 @@ resources:
   - all-openshift-clusters.yaml
   - rhacs-central-cluster.yaml
   - rhacs-secured-cluster.yaml
+  - bad-faith-workloads.yaml
