@@ -4,6 +4,9 @@ metadata:
   name: stackrox-secured-cluster-services
   namespace: stackrox
 spec:
+  monitoring:
+    openshift:
+      enabled: true
   auditLogs:
     collection: Auto
   admissionControl:
