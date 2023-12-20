@@ -4,7 +4,12 @@ metadata:
   name: stackrox-central-services
   namespace: stackrox
 spec:
+  monitoring:
+    openshift:
+      enabled: true
   central:
+    notifierSecretsEncryption:
+      enabled: false
     resources:
       limits:
         cpu: 2000m
@@ -20,6 +25,8 @@ spec:
         enabled: false
       route:
         enabled: true
+    telemetry:
+      enabled: false
     persistence:
       persistentVolumeClaim:
         claimName: stackrox-db
@@ -36,5 +43,5 @@ spec:
         autoScaling: Enabled
         maxReplicas: 3
         minReplicas: 1
-        replicas: 1
+        replicas: 2
     scannerComponent: Enabled
