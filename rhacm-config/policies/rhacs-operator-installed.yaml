@@ -65,7 +65,7 @@ spec:
                   namespace: rhacs-operator
                 spec:
                   name: rhacs-operator
-                  channel: latest
+                  channel: stable
                   installPlanApproval: Automatic
                   source: redhat-operators
                   sourceNamespace: openshift-marketplace
