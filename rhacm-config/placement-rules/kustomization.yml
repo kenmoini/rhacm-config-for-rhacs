@@ -7,3 +7,5 @@ resources:
   - rhacs-central-cluster.yaml
   - rhacs-secured-cluster.yaml
   - bad-faith-workloads.yaml
+  - pipelines-cluster.yaml
+  - compliance-cluster.yaml
