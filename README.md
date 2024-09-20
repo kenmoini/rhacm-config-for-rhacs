@@ -14,14 +14,53 @@ oc apply -k bootstrap/rhacm-operator-install/overlays/release-2.9/
 oc apply -k bootstrap/rhacm-instance/base/
 # or, if deploying to infra nodes
 oc apply -k bootstrap/rhacm-instance/overlays/infra-nodes/
+```
 
+> Once the ACM Operator has been deployed you MUST modify the `subscription-admins` ClusterRoleBinding!
+
+Modify the RBAC to add your user to the allowed list of subjects, eg:
+
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: open-cluster-management:subscription-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: open-cluster-management:subscription-admin
+subjects:
+  - kind: User
+    apiGroup: rbac.authorization.k8s.io
+    name: kmoini@redhat.com
+  - kind: User
+    apiGroup: rbac.authorization.k8s.io
+    name: kemo
+```
+
+Now you can deploy the needed RHACM Configuration objects:
+
+```bash
 # Configure RHACM for RHACS, Compliance Operator, and more
 oc apply -k bootstrap/rhacm-config/base/
 ```
 
-2. Next, label the `local-cluster` in RHACM with `rhacs-central-cluster=true` - this will deploy RHACS Central.
-3. Log into RHACS, create a cluster-init bundle and apply it to the Hub cluster in the `stackrox` namespace
-4. Label any clusters with `rhacs-secured-cluster=true` to deploy as a Secured Cluster and have it automatically be bound to RHACS.
+## Demo Instructions
+
+> It's ideal to have another cluster imported into RHACM - [easy import YAML](https://github.com/kenmoini/rhacm-importer/blob/main/openshift-rhacm-importer.yaml)
+
+With RHACM deployed and its configuration applied you can go about leveraging RHACM Policies to deploy ACS to a variety of clusters.
+
+### Initialization
+
+1. Label the Hub `local-cluster` in RHACM with `rhacs-central-cluster=true` - this will deploy RHACS Central.
+2. Get the `admin` user password from the `stackrox` namespace, it is located in the `central-htpasswd` Secret.
+3. Click the Console Links dropdown to open ACS Central.
+4. Log into RHACS, create a cluster-init bundle and apply the Secret YAML to the Hub cluster in the `stackrox` namespace
+5. Label any OpenShift clusters with `rhacs-secured-cluster=true` to deploy as a Secured Cluster and have it automatically be imported to RHACS via RHACM Policies.
+
+### TODO
 
 ## Bad Faith Workloads
 
